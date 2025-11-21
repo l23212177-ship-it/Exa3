@@ -1,0 +1,19 @@
+<nav class="navbar navbar-light bg-light">
+  <ul class="navbar-nav" id="menu"></ul>
+</nav>
+
+<script>
+  window.onload = () => {
+    fetch('/menu')
+      .then(res => res.json())
+      .then(data => {
+        const menu = document.getElementById('menu');
+        data.forEach(item => {
+          const li = document.createElement('li');
+          li.className = "nav-item";
+          li.innerHTML = `<a class="nav-link" href="${item.url}">${item.nombre}</a>`;
+          menu.appendChild(li);
+        });
+      });
+  };
+</script>
